@@ -1,0 +1,9 @@
+Zona;Hospital;Unidad;Capacidad;ID_Paciente;Nombre_Paciente;Gravedad
+Norte;Militar;Aislamiento;5;500;Maria;6.7
+Norte;Zendal;Triaje;10;250;Luis;4.2
+Sur;La Paz;Urgencias;8;750;Elena;7.2
+Norte;Zendal;UCI;2;125;Ana;9.5
+Norte;Zendal;UCI;2;350;Pedro;8.0
+Sur;Clinico;Reanimacion;2;600;Pablo;5.5
+Sur;Clinico;Reanimacion;2;850;Lucia;8.8
+Norte;Militar;Aislamiento;5;300;Juan;3.1
