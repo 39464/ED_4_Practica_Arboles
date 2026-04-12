@@ -36,14 +36,30 @@ public class Ges {
     }
 
     public double analizarGravedad(String nombreNodo) {
-        /// === INICIO CODIGO ALUMNO === ///
-        return 0.0; // TODO: Borrar este valor por defecto. Es solo para que el proyecto compile.
-        /// === FIN CODIGO ALUMNO === ///
+        double res = 0.0;
+        if (nombreNodo != null) {
+            Estadisticas es = new Estadisticas();
+            res = analizarGravedad(redSanitaria.getRaiz(), nombreNodo, es);
+        }
+        return res;
     }
 
-    /// === INICIO CODIGO ALUMNO (Metodo Auxiliar E1) === ///
+    private double analizarGravedad(NodoArbol nodo, String nombreNodo, Estadisticas es) {
+        double resultado = 0.0;
+        if(nodo == null) return 0.0;
+        else{
+            if(!nodo.getTipo().equals(nombreNodo)){
+                resultado = analizarGravedad(nodo, nombreNodo, es);
+            }else{
 
-    /// === FIN CODIGO ALUMNO === ///
+            }
+        }
+        return resultado;
+    }
+
+    private double sumarNodos(NodoArbol nodo, Estadisticas es) {
+
+    }
 
 
     // =====================================================================

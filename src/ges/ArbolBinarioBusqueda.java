@@ -43,9 +43,9 @@ public class ArbolBinarioBusqueda {
         if(nodo == null){
             nodo = new NodoABB(p);
         }else if(p.getId() < nodo.paciente.getId()){
-            nodo.izq = this.insertarRec(nodo, p);
+            nodo.izq = this.insertarRec(nodo.izq, p);
         }else if(p.getId() > nodo.paciente.getId()){
-            nodo.der = this.insertarRec(nodo, p);
+            nodo.der = this.insertarRec(nodo.der, p);
         }else{
             System.out.println("Error. El paciente "+ p.getId()+" ya existe.");
         }
@@ -56,12 +56,12 @@ public class ArbolBinarioBusqueda {
     // METODO PUBLICO DE BUSQUEDA
     // =========================================================
     public Paciente buscar(int id) {
+        Paciente resultado = null;
         NodoABB res = buscarRec(raiz, id);
-        if (res != null) {
-            return res.paciente;
+        if (res != null){
+            resultado = res.paciente;
         }
-        // else
-        return null;
+        return resultado;
     }
 
     // =========================================================
@@ -69,11 +69,10 @@ public class ArbolBinarioBusqueda {
     // =========================================================
     private NodoABB buscarRec(NodoABB nodo, int id) {
         NodoABB res = null;
-        if(nodo == null) return null;
-        else{
+        if(nodo != null){
             if(nodo.paciente.getId() == id){ res = nodo; }
-            else if(nodo.paciente.getId() < id) res = buscarRec(nodo.izq, id);
-            else if(nodo.paciente.getId() > id) res = buscarRec(nodo.der, id);
+            else if(id < nodo.paciente.getId()) res = buscarRec(nodo.izq, id);
+            else if(id > nodo.paciente.getId()) res = buscarRec(nodo.der, id);
         }
         return res;
     }
