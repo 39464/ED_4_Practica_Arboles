@@ -47,7 +47,6 @@ public class Ges {
     }
 
     private void analizarGravedad(NodoArbol nodo, Estadisticas stats) {
-        double resultado = 0.0;
         if(nodo != null){
             if(nodo.getTipo().equals("PACIENTE")){
                 stats.n_pacientes++;
@@ -66,14 +65,24 @@ public class Ges {
     // EJERCICIO 2: Algoritmo de triaje (busqueda de cama en una unidad con capacidad)
     // =====================================================================
     public String buscarCama(String especialidad) {
-        /// === INICIO CODIGO ALUMNO === ///
-        return ""; // TODO: Borrar este valor por defecto. Es solo para que el proyecto compile.
-        /// === FIN CODIGO ALUMNO === ///
+        return buscarCamaRec(redSanitaria.getRaiz(), especialidad);
     }
 
-    /// === INICIO CODIGO ALUMNO (Metodo Auxiliar E2) === ///
-
-    /// === FIN CODIGO ALUMNO === ///
+    private String buscarCamaRec(NodoArbol nodo, String especialidad) {
+        String resultado = "";
+        if(nodo != null) {
+            if(nodo.getTipo().equalsIgnoreCase("UNIDAD") && nodo.getNombre().equalsIgnoreCase(especialidad)) {
+                if(nodo.getHijos().size() < nodo.getCapacidadMaxima()){
+                    resultado = resultado + nodo.getNombre();
+                }
+            }else{
+                resultado = resultado + nodo.getNombre() +" -> ";
+                Iterator<NodoArbol> it = nodo.getHijos().iterator();
+                while (it.hasNext()) resultado = buscarCamaRec(it.next(), especialidad);
+            }
+        }
+        return resultado;
+    }
 
 
 
@@ -81,14 +90,22 @@ public class Ges {
     // EJERCICIO 3: Gestion de altas
     // =====================================================================
     public boolean darAltaPaciente(int idPaciente) {
-        /// === INICIO CODIGO ALUMNO === ///
-        return false; // TODO: Borrar este valor por defecto. Es solo para que el proyecto compile.
-        /// === FIN CODIGO ALUMNO === ///
+        return darAltaPaciente(this.redSanitaria.getRaiz(), idPaciente);
     }
 
-    /// === INICIO CODIGO ALUMNO (Metodo Auxiliar E3) === ///
-
-    /// === FIN CODIGO ALUMNO === ///
+    private boolean darAltaPaciente(NodoArbol nodo, int idPaciente) {
+        boolean res = false;
+        if(nodo != null) {
+            if(nodo.getTipo().equals("PACIENTE") && nodo.getPaciente().getId() == idPaciente){
+                nodo.getPadre().getHijos().remove(nodo);
+                res = true;
+            }else{
+                Iterator<NodoArbol> it = nodo.getHijos().iterator();
+                while(it.hasNext() && !res) res = darAltaPaciente(it.next(), idPaciente); //para cuando encuentre al paciente!!
+            }
+        }
+        return res;
+    }
 
 
 
@@ -117,8 +134,6 @@ public class Ges {
     // EJERCICIO 6: Localizacion rapida
     // =====================================================================
     public Paciente buscarFamiliar(int idPaciente) {
-        /// === INICIO CODIGO ALUMNO === ///
-        return null; // TODO: Borrar este valor por defecto. Es solo para que el proyecto compile.
-        /// === FIN CODIGO ALUMNO === ///
+        return this.indicePacientes.buscar(idPaciente);
     }
 }
