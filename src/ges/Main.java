@@ -67,33 +67,31 @@ public class Main {
         // VERIFICACION DE EJERCICIOS
         // =========================================================
         if (fUsoFicheroMasivo == 0) {
-            // Descomentar segun se quieran ir probando los metodos desarrollados
-
             System.out.println("\n=== ZONA DE PRUEBAS: VERIFICANDO METODOS DEL ALUMNO ===");
 
             // EJERCICIO 1: Analizar gravedad de un nodo
-            // System.out.println("\nProbando Ejercicio 1 (analizarGravedad en 'Zendal'):");
-            // double gravedadMedia = sistemaGes.analizarGravedad("Zendal");
-            // System.out.printf("   Gravedad media: %.2f\n", gravedadMedia);
+            System.out.println("\nProbando Ejercicio 1 (analizarGravedad en 'Zendal'):");
+            double gravedadMedia = sistemaGes.analizarGravedad("Zendal");
+            System.out.printf("   Gravedad media: %.2f\n", gravedadMedia);
             // Resultado esperado:
             // Gravedad media: 7,23
 
-            // System.out.println("\nProbando Ejercicio 1 (analizarGravedad en 'REANIMACION'):");
-            // gravedadMedia = sistemaGes.analizarGravedad("REANIMACION");
-            // System.out.printf("   Gravedad media: %.2f\n", gravedadMedia);
+            System.out.println("\nProbando Ejercicio 1 (analizarGravedad en 'REANIMACION'):");
+            gravedadMedia = sistemaGes.analizarGravedad("REANIMACION");
+            System.out.printf("   Gravedad media: %.2f\n", gravedadMedia);
             // Resultado esperado:
             // Gravedad media: 7,15
 
-            // System.out.println("\nProbando Ejercicio 1 (analizarGravedad en 'PABLO'):");
-            // gravedadMedia = sistemaGes.analizarGravedad("PABLO");
-            // System.out.printf("   Gravedad media: %.2f\n", gravedadMedia);
+            System.out.println("\nProbando Ejercicio 1 (analizarGravedad en 'PABLO'):");
+            gravedadMedia = sistemaGes.analizarGravedad("PABLO");
+            System.out.printf("   Gravedad media: %.2f\n", gravedadMedia);
             // Resultado esperado:
             // Gravedad media: 5,50
 
             // EJERCICIO 2: Buscar cama (triaje) en una unidad con capacidad
-            // System.out.println("\nProbando Ejercicio 2 (buscarCama para 'URGENCIAS'):");
-            // String rutaCama = sistemaGes.buscarCama("URGENCIAS");
-            // System.out.println("   Ruta encontrada: " + (rutaCama != null ? rutaCama : "No hay camas disponibles"));
+            System.out.println("\nProbando Ejercicio 2 (buscarCama para 'URGENCIAS'):");
+            String rutaCama = sistemaGes.buscarCama("URGENCIAS");
+            System.out.println("   Ruta encontrada: " + (rutaCama != null ? rutaCama : "No hay camas disponibles"));
             // Resultado esperado:
             // Ruta encontrada: Mando Central -> Sur -> La Paz -> Urgencias
 
