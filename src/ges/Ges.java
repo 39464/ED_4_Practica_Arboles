@@ -37,28 +37,28 @@ public class Ges {
 
     public double analizarGravedad(String nombreNodo) {
         double res = 0.0;
+        NodoArbol inicio = redSanitaria.buscar(nombreNodo); //primero encontrar lo q buscas! no hsce falta recorrerlo desde el principio
         if (nombreNodo != null) {
             Estadisticas es = new Estadisticas();
-            res = analizarGravedad(redSanitaria.getRaiz(), nombreNodo, es);
+            analizarGravedad(inicio, es);
+            if(es.n_pacientes != 0) res = es.s_gravedad/es.n_pacientes;
         }
         return res;
     }
 
-    private double analizarGravedad(NodoArbol nodo, String nombreNodo, Estadisticas es) {
+    private void analizarGravedad(NodoArbol nodo, Estadisticas stats) {
         double resultado = 0.0;
-        if(nodo == null) return 0.0;
-        else{
-            if(!nodo.getTipo().equals(nombreNodo)){
-                resultado = analizarGravedad(nodo, nombreNodo, es);
-            }else{
-
+        if(nodo != null){
+            if(nodo.getTipo().equals("PACIENTE")){
+                stats.n_pacientes++;
+                stats.s_gravedad += nodo.getPaciente().getGravedad();
+            }else{ //ir haciendo lo mismo para todos los hijos
+                Iterator<NodoArbol> it = nodo.getHijos().iterator();
+                while(it.hasNext()){
+                    analizarGravedad(it.next(), stats);
+                }
             }
         }
-        return resultado;
-    }
-
-    private double sumarNodos(NodoArbol nodo, Estadisticas es) {
-
     }
 
 
@@ -96,14 +96,22 @@ public class Ges {
     // EJERCICIO 5: Indexacion masiva
     // =====================================================================
     public void generarIndice() {
-        /// === INICIO CODIGO ALUMNO === ///
-
-        /// === FIN CODIGO ALUMNO === ///
+        this.indicePacientes = new ArbolBinarioBusqueda();
+        generarIndiceRec(this.redSanitaria.getRaiz());
     }
 
-    /// === INICIO CODIGO ALUMNO (Metodo Auxiliar E5) === ///
-
-    /// === FIN CODIGO ALUMNO === ///
+    private void generarIndiceRec(NodoArbol nodo) {
+        if(nodo != null){
+            if(nodo.getTipo().equals("PACIENTE")){
+                this.indicePacientes.insertar(nodo.getPaciente());
+            }else{
+                Iterator<NodoArbol> it = nodo.getHijos().iterator();
+                while(it.hasNext()){
+                    generarIndiceRec(it.next());
+                }
+            }
+        }
+    }
 
     // =====================================================================
     // EJERCICIO 6: Localizacion rapida
