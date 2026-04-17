@@ -82,7 +82,7 @@ public class Ges {
                     String anterior = buscarCamaRec(it.next(), especialidad);
                     if(!anterior.equalsIgnoreCase("")) {
                         encontrado = true;
-                        resultado = nodo.getNombre() + "->" + anterior;
+                        resultado = nodo.getNombre() + " -> " + anterior;
                     }
                 }
             }

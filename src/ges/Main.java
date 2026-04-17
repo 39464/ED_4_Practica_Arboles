@@ -26,7 +26,7 @@ public class Main {
         int fUsoFicheroMasivo = 1;
         if (fUsoFicheroMasivo == 1) {
             // Datos masivos: 14M (COVID-19) + 6M (otras patologias e ingresos). Solo usar al final.
-            totalPacientes = 20_000_000;
+            totalPacientes = 10_000_000;
             archivoDatosArbol = "pacientes_ges_nacional_" + totalPacientes + ".csv";
             System.out.println("=== INICIANDO SISTEMA GES (NIVEL NACIONAL) ===");
             System.out.println("Carga estimada: " + totalPacientes + " de pacientes activos.");
