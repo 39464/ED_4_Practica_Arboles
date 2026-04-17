@@ -3,8 +3,8 @@
  * Esta clase se entrega como esqueleto. El alumno debe implementar los metodos
  * recursivos de triaje, analisis, altas e indexacion solicitados en la practica.
  *
- * @author profesores ED
- * @version 1.0
+ * @author Irene Lombardo Cabrera
+ * @version 2.0
  */
 package ges;
 
@@ -70,16 +70,23 @@ public class Ges {
 
     private String buscarCamaRec(NodoArbol nodo, String especialidad) {
         String resultado = "";
+        boolean encontrado = false; //evita recorrer toda las ucis
         if(nodo != null) {
             if(nodo.getTipo().equalsIgnoreCase("UNIDAD") && nodo.getNombre().equalsIgnoreCase(especialidad)) {
                 if(nodo.getHijos().size() < nodo.getCapacidadMaxima()){
-                    resultado = resultado + nodo.getNombre();
+                    resultado = nodo.getNombre();
                 }
             }else{
-                resultado = resultado + nodo.getNombre() +" -> ";
                 Iterator<NodoArbol> it = nodo.getHijos().iterator();
-                while (it.hasNext()) resultado = buscarCamaRec(it.next(), especialidad);
+                while (it.hasNext() && !encontrado) {
+                    String anterior = buscarCamaRec(it.next(), especialidad);
+                    if(!anterior.equalsIgnoreCase("")) {
+                        encontrado = true;
+                        resultado = nodo.getNombre() + "->" + anterior;
+                    }
+                }
             }
+            if(nodo.getTipo().equals("MANDO")&& !encontrado) resultado = "No se han encontrado camas";
         }
         return resultado;
     }

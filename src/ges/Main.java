@@ -23,7 +23,7 @@ public class Main {
         // fUsoFicheroMasivo =
         // 0 --> datos_prueba.csv
         // 1 --> pacientes_ges_nacional_20000000.csv --> Usarlo solo cuando esté terminada la practica
-        int fUsoFicheroMasivo = 0;
+        int fUsoFicheroMasivo = 1;
         if (fUsoFicheroMasivo == 1) {
             // Datos masivos: 14M (COVID-19) + 6M (otras patologias e ingresos). Solo usar al final.
             totalPacientes = 20_000_000;
@@ -95,38 +95,38 @@ public class Main {
             // Resultado esperado:
             // Ruta encontrada: Mando Central -> Sur -> La Paz -> Urgencias
 
-            // System.out.println("\nProbando Ejercicio 2 (buscarCama para 'UCI'):");
-            // rutaCama = sistemaGes.buscarCama("UCI");
-            // System.out.println("   Ruta encontrada: " + (rutaCama != null ? rutaCama : "No hay camas disponibles"));
+            System.out.println("\nProbando Ejercicio 2 (buscarCama para 'UCI'):");
+            rutaCama = sistemaGes.buscarCama("UCI");
+            System.out.println("   Ruta encontrada: " + (rutaCama != null ? rutaCama : "No hay camas disponibles"));
             // Resultado esperado:
             // Ruta encontrada: No hay camas disponibles
 
             // EJERCICIO 3: Dar de alta a un paciente (borrar del arbol general)
             // Usamos un ID que sepamos que existe en los datos de prueba (ej: 350)
-            // int idPrueba = 350;
-            // System.out.println("\nProbando Ejercicio 3 (darDeAlta al paciente " + idPrueba + "):");
-            // boolean exito = sistemaGes.darAltaPaciente(idPrueba);
-            // System.out.println("   Alta completada: " + exito);
-            // if (exito) {
-            //     totalPacientes = totalPacientes - 1;
-            //     System.out.println("   Arbol tras el alta (el paciente " + idPrueba + " ya no deberia estar):");
-            //     redSanitaria.imprimirArbol();
-            // }
+            int idPrueba = 350;
+            System.out.println("\nProbando Ejercicio 3 (darDeAlta al paciente " + idPrueba + "):");
+            boolean exito = sistemaGes.darAltaPaciente(idPrueba);
+            System.out.println("   Alta completada: " + exito);
+            if (exito) {
+                totalPacientes = totalPacientes - 1;
+                System.out.println("   Arbol tras el alta (el paciente " + idPrueba + " ya no deberia estar):");
+                redSanitaria.imprimirArbol();
+            }
             // Resultado esperado:
             // Alta completada: true
             // Arbol tras el alta (el paciente 350 ya no deberia estar):
 
 
             // Usamos un ID que sepamos que no existe en los datos de prueba (ej: 351)
-            // idPrueba = 351;
-            // System.out.println("\nProbando Ejercicio 3 (darDeAlta al paciente " + idPrueba + "):");
-            // exito = sistemaGes.darAltaPaciente(idPrueba);
-            // System.out.println("   Alta completada: " + exito);
-            // if (exito) {
-            //      totalPacientes = totalPacientes - 1;
-            //      System.out.println("   Arbol tras el alta (el paciente " + idPrueba + " ya no deberia estar):");
-            //      redSanitaria.imprimirArbol();
-            //  }
+            idPrueba = 351;
+            System.out.println("\nProbando Ejercicio 3 (darDeAlta al paciente " + idPrueba + "):");
+            exito = sistemaGes.darAltaPaciente(idPrueba);
+            System.out.println("   Alta completada: " + exito);
+            if (exito) {
+                 totalPacientes = totalPacientes - 1;
+                 System.out.println("   Arbol tras el alta (el paciente " + idPrueba + " ya no deberia estar):");
+                 redSanitaria.imprimirArbol();
+            }
             // Resultado esperado:
             // Probando Ejercicio 3 (darDeAlta al paciente 351):
             // Alta completada: false
